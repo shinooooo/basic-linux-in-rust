@@ -1,18 +1,21 @@
 use std::env::args;
 use std::fs::{metadata, read_to_string};
-use std::io::{stdout, BufWriter, Write};
+use std::io::prelude::*;
+use std::io::{self, stdout, BufWriter, Write};
 use std::process;
 
 fn main() {
     let args: Vec<String> = args().collect();
 
     if args.len() < 2 {
-        eprintln!("{}: flie name not given", args[0]);
-        process::exit(1);
-    }
-
-    for arg in args.iter().skip(1) {
-        do_cat(arg);
+        let stdin = io::stdin();
+        for line in stdin.lock().lines() {
+            println!("{}", line.unwrap());
+        }
+    } else {
+        for arg in args.iter().skip(1) {
+            do_cat(arg);
+        }
     }
 }
 
