@@ -1,10 +1,10 @@
-use std::env::args;
+use std::env;
 use std::fs::{metadata, read_to_string};
 use std::io::{stdout, BufWriter, Write};
 use std::process;
 
 fn main() {
-    let args: Vec<String> = args().collect();
+    let args: Vec<String> = env::args().collect();
 
     if args.len() < 2 {
         eprintln!("{}: flie name not given", args[0]);
