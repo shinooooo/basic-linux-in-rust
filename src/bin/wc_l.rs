@@ -15,10 +15,7 @@ fn main() -> io::Result<()> {
     let mut buf = String::new();
     f.read_to_string(&mut buf)?;
 
-    // for s in buf.split('\n') {
-    //     println!("aa :{}", s);
-    // }
-    println!("{}", buf.split('\n').count());
-    // println!("{}", buf.lines().collect::<String>().len());
+    // println!("{}", buf.split('\n').count());
+    println!("{}", buf.lines().collect::<Vec<&str>>().len());
     Ok(())
 }
